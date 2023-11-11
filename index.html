@@ -7,19 +7,18 @@
     <title>Weathered BAYC</title>
     <!-- Include Web3 from a CDN for this example -->
     <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+    <!-- Include p5.js from a CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <!-- Link to your external JavaScript file -->
     <script type="module" src="index.js"></script>
 </head>
 <body>
     <h1>Weathered BAYC</h1>
     <!-- The img tag will hold the processed image after WebGL shader processing -->
-    <img id="processedTokenImage" src="" alt="Processed Token Image" style="max-width: 100%; height: auto;">
+    <div id="processedTokenImage"></div>
 
     <!-- The original image for reference -->
     <img id="tokenImage" src="" alt="Token Image" style="max-width: 100%; height: auto;">
-
-    <!-- Canvas element for WebGL -->
-    <canvas id="glCanvas" width="480" height="480" style="border: none;"></canvas>
 
     <div id="transactionHistory"></div>
 </body>

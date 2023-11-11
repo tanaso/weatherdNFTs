@@ -43,12 +43,12 @@ export async function getTokenImage(contract, tokenId) {
     // Extract the image URL from the metadata
     const imageUrl = metadata.image;
 
-    // Set the image URL to the img tag's src attribute
-    const imageElement = document.getElementById('tokenImage');
-    if (imageElement) {
-        imageElement.src = convertIPFStoHTTP(imageUrl);
-        imageElement.alt = `Token #${tokenId}`;
-    }
+    // // Set the image URL to the img tag's src attribute
+    // const imageElement = document.getElementById('tokenImage');
+    // if (imageElement) {
+    //     imageElement.src = convertIPFStoHTTP(imageUrl);
+    //     imageElement.alt = `Token #${tokenId}`;
+    // }
 
-    return imageUrl;
+    return convertIPFStoHTTP(imageUrl);
 }

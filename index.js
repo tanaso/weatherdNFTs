@@ -2,6 +2,7 @@
 import { getRandomInt, loadABI, fetchEventsInBatches, convertBigIntToNumber } from './src/utilities.js';
 import { convertIPFStoHTTP, fetchFromIPFS } from './src/ipfs.js';
 import { getMintDateOfToken, getTokenImage } from './src/nft.js';
+import { drawP5 } from './src/p5ImageProcessor.js';
 import { initWebGL } from './src/webgl.js';
 
 // Initialize Web3
@@ -22,7 +23,15 @@ window.onload = async () => {
 
         const imageUrl = await getTokenImage(contract, tokenID);
         console.log(`The image URL for the token is: ${imageUrl}`);
-        initWebGL(imageUrl);
+
+        // Set the image URL to the img tag's src attribute
+        const imageElement = document.getElementById('tokenImage');
+        if (imageElement) {
+            imageElement.src = imageUrl;
+            imageElement.alt = `Token #${tokenID}`;
+        }
+        // initWebGL(imageUrl);
+        drawP5(imageUrl);
 
     } catch (err) {
         console.error('Error in window.onload:', err);
