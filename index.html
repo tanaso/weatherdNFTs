@@ -4,14 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NFT Transaction History</title>
+    <title>Weathered BAYC</title>
     <!-- Include Web3 from a CDN for this example -->
     <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
     <!-- Link to your external JavaScript file -->
-    <script src="app.js" defer></script>
+    <script type="module" src="index.js"></script>
 </head>
 <body>
-    <h1>NFT Transaction History</h1>
+    <h1>Weathered BAYC</h1>
+    <!-- The img tag will hold the processed image after WebGL shader processing -->
+    <img id="processedTokenImage" src="" alt="Processed Token Image" style="max-width: 100%; height: auto;">
+
+    <!-- The original image for reference -->
+    <img id="tokenImage" src="" alt="Token Image" style="max-width: 100%; height: auto;">
+
+    <!-- Canvas element for WebGL -->
+    <canvas id="glCanvas" width="480" height="480" style="border: none;"></canvas>
+
     <div id="transactionHistory"></div>
 </body>
 </html>
