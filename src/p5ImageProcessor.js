@@ -3,28 +3,30 @@ export async function drawP5(imageUrl){
         console.log('p5.js is loaded');
         let myShader;
         let img;
+        let graphics;
 
         p.preload = function(){
+            img = p.loadImage(imageUrl);
             myShader = p.loadShader('src/shader/shader.vert', 'src/shader/shader.frag');
         }
 
         p.setup = function(){
-            p.createCanvas(375, 375, p.WEBGL);
-            img = p.loadImage(imageUrl);
-            p.shader(myShader);
-            myShader.setUniform('tex', img)
+            p.createCanvas(1, 1, p.WEBGL);
+            graphics = p.createGraphics(img.width, img.height, p.WEBGL); // Create a graphics buffer with the same dimensions as the image
+            graphics.shader(myShader);
+            // p.shader(myShader);
+            myShader.setUniform('u_texture', img);
+            myShader.setUniform('u_resolution', [p.width, p.height]);
         }
         
         p.draw = function(){
-            p.background(255,0,0);
-            let frep = p.map(p.mouseX, 0, p.width, 0, 10.0);
-            let amp = p.map(p.mouseY, 0, p.height, 0, 0.25);
+            graphics.background(255);
+            graphics.noStroke();
+            graphics.smooth()
+            graphics.rect(0, 0, img.width, img.height);
 
-            myShader.setUniform('frequency', frep);
-            myShader.setUniform('amplitude', amp);
-            myShader.setUniform('time', p.frameCount * 0.01);
-
-            p.rect(0, 0, p.width, p.height)
+            let base64Image = graphics.canvas.toDataURL();
+            document.getElementById('processedImage').src = base64Image;
         }
     }
 

@@ -1,0 +1,96 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Notion-OpenAI Integration API",
+    "version": "1.0.0"
+  },
+  "server": {
+    "url": "https://api.notion.com/v1/databases/HomeShelf-fa064b67e2884c868859ec08c0b4faa9"
+  },
+  "paths": {
+    "/readFromNotion": {
+      "post": {
+        "summary": "Read data from a Notion database",
+        "operationId": "readFromNotion",
+        "tags": ["Notion"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "databaseId": {
+                    "type": "string"
+                  }
+                },
+                "required": ["databaseId"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                        // Here you will define the structure of the data returned from Notion
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sendToOpenAI": {
+      "post": {
+        "summary": "Send text to OpenAI for processing",
+        "operationId": "sendToOpenAI",
+        "tags": ["OpenAI"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  }
+                },
+                "required": ["text"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

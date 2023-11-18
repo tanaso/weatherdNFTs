@@ -3,6 +3,7 @@ import { getRandomInt, loadABI, fetchEventsInBatches, convertBigIntToNumber } fr
 import { convertIPFStoHTTP, fetchFromIPFS } from './src/ipfs.js';
 import { getMintDateOfToken, getTokenImage } from './src/nft.js';
 import { drawP5 } from './src/p5ImageProcessor.js';
+import { processImage } from './src/p5shader.js';
 import { initWebGL } from './src/webgl.js';
 
 // Initialize Web3
@@ -30,8 +31,8 @@ window.onload = async () => {
             imageElement.src = imageUrl;
             imageElement.alt = `Token #${tokenID}`;
         }
-        // initWebGL(imageUrl);
         drawP5(imageUrl);
+        // processImage(imageUrl);
 
     } catch (err) {
         console.error('Error in window.onload:', err);
